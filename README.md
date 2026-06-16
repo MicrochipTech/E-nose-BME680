@@ -1,4 +1,6 @@
-# BME680 Electronic Nose
+<p align="center">
+  <img src="images/banner.svg" alt="BME680 Electronic Nose" width="100%">
+</p>
 
 On-device odor classifier distinguishing **coffee, alcohol, and garlic** using a single Bosch BME680 gas sensor and a scikit-learn decision tree deployed on an Adafruit Feather M4 Express (SAMD51).
 
@@ -11,6 +13,10 @@ No cloud. No ML library. The entire model runs as hardcoded C `if/else` on the m
 ---
 
 ## Hardware
+
+<p align="center">
+  <img src="images/hardware-setup.jpg" alt="Demo setup: BME680 sensor with three scent jars (alcohol, garlic, coffee) on Feather M4" width="600">
+</p>
 
 | Part | Details |
 |------|---------|
@@ -34,18 +40,9 @@ No cloud. No ML library. The entire model runs as hardcoded C `if/else` on the m
 
 ### Signal Processing Pipeline
 
-```
-Raw gas_ohm
-    |
-    v
-log(gas_ohm) --> Fast EMA (alpha=0.10) --> gasEma
-                                              |
-                                    dropPct = (gasEma - baseline) / baseline
-                                              |
-                              Slow EMA baseline (alpha=0.01)
-
-20-second rolling window --> 10 features --> Decision tree (depth 5) --> CLASS
-```
+<p align="center">
+  <img src="images/pipeline.svg" alt="Signal processing pipeline: BME680 → log → EMA → dropPct → features → decision tree" width="100%">
+</p>
 
 ### Features (10 total)
 
@@ -99,6 +96,10 @@ This improved F1 from 86.3% to 90.3% (decision tree) and means the model classif
 | Inference time | < 1 ms on 120 MHz M4 |
 
 ### Classification Report (held-out test, 107 windows)
+
+<p align="center">
+  <img src="images/confusion-matrix.svg" alt="Confusion matrix: 90.3% macro F1" width="500">
+</p>
 
 ```
               precision    recall  f1-score   support

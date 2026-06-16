@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#11998e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#38ef7d;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="320" rx="12" fill="#0f1419"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" fill="#e7e9ea" font-size="16" font-weight="600">Signal Processing Pipeline</text>
+
+  <!-- Step 1: BME680 Sensor -->
+  <rect x="30" y="60" width="120" height="80" rx="10" fill="#1a2638" stroke="#2d4a6e" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="90" y="90" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="600">BME680</text>
+  <text x="90" y="108" text-anchor="middle" fill="#94a3b8" font-size="9">gas_ohm</text>
+  <text x="90" y="122" text-anchor="middle" fill="#94a3b8" font-size="9">humidity</text>
+  <text x="90" y="136" text-anchor="middle" fill="#94a3b8" font-size="9">temp, press</text>
+
+  <!-- Arrow 1 -->
+  <path d="M155 100 L185 100" stroke="#4b5563" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <defs><marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+    <polygon points="0 0, 8 3, 0 6" fill="#4b5563"/></marker></defs>
+
+  <!-- Step 2: Log Transform -->
+  <rect x="190" y="60" width="120" height="80" rx="10" fill="#1a2638" stroke="#2d4a6e" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="250" y="90" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="600">Log Transform</text>
+  <text x="250" y="110" text-anchor="middle" fill="#94a3b8" font-size="9">log(gas_ohm)</text>
+  <text x="250" y="126" text-anchor="middle" fill="#94a3b8" font-size="9">slope = d/dt</text>
+
+  <!-- Arrow 2 -->
+  <path d="M315 100 L345 100" stroke="#4b5563" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Step 3: EMA -->
+  <rect x="350" y="60" width="120" height="80" rx="10" fill="#1a2638" stroke="#2d4a6e" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="410" y="85" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="600">Dual EMA</text>
+  <text x="410" y="103" text-anchor="middle" fill="#94a3b8" font-size="9">Fast: alpha=0.10</text>
+  <text x="410" y="119" text-anchor="middle" fill="#94a3b8" font-size="9">Slow: alpha=0.01</text>
+  <text x="410" y="135" text-anchor="middle" fill="#94a3b8" font-size="9">(baseline)</text>
+
+  <!-- Arrow 3 -->
+  <path d="M475 100 L505 100" stroke="#4b5563" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Step 4: dropPct -->
+  <rect x="510" y="60" width="120" height="80" rx="10" fill="#1a2638" stroke="#2d4a6e" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="570" y="90" text-anchor="middle" fill="#10b981" font-size="11" font-weight="600">Normalize</text>
+  <text x="570" y="110" text-anchor="middle" fill="#94a3b8" font-size="9">dropPct =</text>
+  <text x="570" y="126" text-anchor="middle" fill="#94a3b8" font-size="9">(ema-base)/base</text>
+
+  <!-- Arrow 4 -->
+  <path d="M635 100 L665 100" stroke="#4b5563" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Step 5: Features -->
+  <rect x="670" y="60" width="120" height="80" rx="10" fill="#1a2638" stroke="#2d4a6e" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="730" y="85" text-anchor="middle" fill="#ec4899" font-size="11" font-weight="600">20s Window</text>
+  <text x="730" y="103" text-anchor="middle" fill="#94a3b8" font-size="9">10 features</text>
+  <text x="730" y="119" text-anchor="middle" fill="#94a3b8" font-size="9">percentiles, std</text>
+  <text x="730" y="135" text-anchor="middle" fill="#94a3b8" font-size="9">min, slope</text>
+
+  <!-- Arrow down to classifier -->
+  <path d="M730 145 L730 170" stroke="#4b5563" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Step 6: Decision Tree -->
+  <rect x="640" y="175" width="180" height="60" rx="10" fill="url(#grad2)" filter="url(#shadow)"/>
+  <text x="730" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">Decision Tree (depth 5)</text>
+  <text x="730" y="218" text-anchor="middle" fill="#d1fae5" font-size="10">Hardcoded C if/else — &lt;1 KB</text>
+
+  <!-- Output arrows to classes -->
+  <path d="M640 235 L500 270" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <path d="M730 235 L730 270" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <path d="M820 235 L900 270" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Output classes -->
+  <rect x="440" y="275" width="110" height="35" rx="8" fill="#4a2c17" stroke="#d97706" stroke-width="1"/>
+  <text x="495" y="297" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="600">Coffee</text>
+
+  <rect x="675" y="275" width="110" height="35" rx="8" fill="#2d1b4e" stroke="#7c3aed" stroke-width="1"/>
+  <text x="730" y="297" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="600">Alcohol</text>
+
+  <rect x="845" y="275" width="110" height="35" rx="8" fill="#3d3010" stroke="#ca8a04" stroke-width="1"/>
+  <text x="900" y="297" text-anchor="middle" fill="#fde047" font-size="12" font-weight="600">Garlic</text>
+
+  <!-- Metrics bar at bottom -->
+  <text x="90" y="180" text-anchor="middle" fill="#6b7280" font-size="9">INFERENCE</text>
+  <text x="90" y="200" text-anchor="middle" fill="#4ade80" font-size="18" font-weight="700">&lt;1ms</text>
+
+  <text x="250" y="180" text-anchor="middle" fill="#6b7280" font-size="9">FLASH</text>
+  <text x="250" y="200" text-anchor="middle" fill="#4ade80" font-size="18" font-weight="700">&lt;1KB</text>
+
+  <text x="410" y="180" text-anchor="middle" fill="#6b7280" font-size="9">F1 MACRO</text>
+  <text x="410" y="200" text-anchor="middle" fill="#4ade80" font-size="18" font-weight="700">90.3%</text>
+
+  <text x="250" y="240" text-anchor="middle" fill="#6b7280" font-size="9">RAM</text>
+  <text x="250" y="260" text-anchor="middle" fill="#a78bfa" font-size="14" font-weight="600">1.3 KB</text>
+
+  <text x="90" y="240" text-anchor="middle" fill="#6b7280" font-size="9">WARM-UP</text>
+  <text x="90" y="260" text-anchor="middle" fill="#a78bfa" font-size="14" font-weight="600">~20s</text>
+
+  <text x="410" y="240" text-anchor="middle" fill="#6b7280" font-size="9">DETECTION</text>
+  <text x="410" y="260" text-anchor="middle" fill="#a78bfa" font-size="14" font-weight="600">~10s</text>
+</svg>
