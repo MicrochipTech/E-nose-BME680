@@ -1,72 +1,48 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 200" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 160" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
   <defs>
-    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0C1A2E"/>
-      <stop offset="50%" style="stop-color:#1B365D"/>
-      <stop offset="100%" style="stop-color:#0C1A2E"/>
-    </linearGradient>
     <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:#E87722"/>
       <stop offset="100%" style="stop-color:#78BE20"/>
     </linearGradient>
   </defs>
 
-  <!-- Background -->
-  <rect width="900" height="200" fill="url(#bg-grad)"/>
-  <rect x="0" y="195" width="900" height="5" fill="url(#accent)"/>
+  <!-- Plain white background -->
+  <rect width="900" height="160" fill="#FFFFFF"/>
+  <rect x="0" y="155" width="900" height="5" fill="url(#accent)"/>
 
   <!-- Decorative circuit-like lines -->
-  <path d="M0 100 L50 100 L70 80 L120 80 L140 100 L200 100" stroke="#234876" stroke-width="1" fill="none" opacity="0.6"/>
-  <path d="M0 130 L80 130 L100 150 L160 150 L180 130 L220 130" stroke="#234876" stroke-width="1" fill="none" opacity="0.6"/>
-  <path d="M700 60 L750 60 L770 80 L830 80 L850 60 L900 60" stroke="#234876" stroke-width="1" fill="none" opacity="0.6"/>
-  <path d="M720 140 L780 140 L800 120 L860 120 L880 140 L900 140" stroke="#234876" stroke-width="1" fill="none" opacity="0.6"/>
+  <path d="M0 80 L40 80 L55 65 L100 65 L115 80 L170 80" stroke="#D0D8E0" stroke-width="1" fill="none"/>
+  <path d="M0 110 L60 110 L75 125 L130 125 L145 110 L190 110" stroke="#D0D8E0" stroke-width="1" fill="none"/>
+  <path d="M720 50 L760 50 L775 65 L830 65 L845 50 L900 50" stroke="#D0D8E0" stroke-width="1" fill="none"/>
+  <path d="M740 110 L790 110 L805 95 L860 95 L875 110 L900 110" stroke="#D0D8E0" stroke-width="1" fill="none"/>
 
   <!-- Dots -->
-  <circle cx="50" cy="100" r="3" fill="#0077C8"/>
-  <circle cx="140" cy="100" r="3" fill="#0077C8"/>
-  <circle cx="100" cy="150" r="3" fill="#00B5E2"/>
-  <circle cx="770" cy="80" r="3" fill="#0077C8"/>
-  <circle cx="850" cy="60" r="3" fill="#00B5E2"/>
-  <circle cx="800" cy="120" r="3" fill="#0077C8"/>
-
-  <!-- Microchip text logo -->
-  <text x="450" y="45" text-anchor="middle" fill="#00B5E2" font-size="12" letter-spacing="3" font-weight="500">MICROCHIP TECHNOLOGY</text>
+  <circle cx="40" cy="80" r="3" fill="#0077C8"/>
+  <circle cx="115" cy="80" r="3" fill="#0077C8"/>
+  <circle cx="75" cy="125" r="3" fill="#00B5E2"/>
+  <circle cx="775" cy="65" r="3" fill="#0077C8"/>
+  <circle cx="845" cy="50" r="3" fill="#00B5E2"/>
+  <circle cx="805" cy="95" r="3" fill="#0077C8"/>
 
   <!-- Main title -->
-  <text x="450" y="95" text-anchor="middle" fill="#FFFFFF" font-size="36" font-weight="700">BME680 Electronic Nose</text>
+  <text x="450" y="55" text-anchor="middle" fill="#1B365D" font-size="32" font-weight="700">BME680 Electronic Nose</text>
 
   <!-- Subtitle -->
-  <text x="450" y="125" text-anchor="middle" fill="#A8C4E0" font-size="14">On-device odor classification using a single gas sensor and a decision tree</text>
+  <text x="450" y="82" text-anchor="middle" fill="#5A6E80" font-size="14">On-device odor classification using a single gas sensor and a decision tree</text>
 
   <!-- Tags -->
-  <rect x="250" y="145" width="80" height="24" rx="12" fill="#0C1A2E" stroke="#0077C8" stroke-width="1"/>
-  <text x="290" y="161" text-anchor="middle" fill="#00B5E2" font-size="10" font-weight="600">SAMD51</text>
+  <rect x="255" y="100" width="72" height="24" rx="12" fill="#F0F4F8" stroke="#0077C8" stroke-width="1"/>
+  <text x="291" y="116" text-anchor="middle" fill="#0077C8" font-size="10" font-weight="600">SAMD51</text>
 
-  <rect x="340" y="145" width="80" height="24" rx="12" fill="#0C1A2E" stroke="#00843D" stroke-width="1"/>
-  <text x="380" y="161" text-anchor="middle" fill="#78BE20" font-size="10" font-weight="600">&lt;1 KB</text>
+  <rect x="337" y="100" width="72" height="24" rx="12" fill="#F0F4F8" stroke="#00843D" stroke-width="1"/>
+  <text x="373" y="116" text-anchor="middle" fill="#00843D" font-size="10" font-weight="600">&lt;1 KB</text>
 
-  <rect x="430" y="145" width="80" height="24" rx="12" fill="#0C1A2E" stroke="#E87722" stroke-width="1"/>
-  <text x="470" y="161" text-anchor="middle" fill="#E87722" font-size="10" font-weight="600">90.3% F1</text>
+  <rect x="419" y="100" width="80" height="24" rx="12" fill="#F0F4F8" stroke="#E87722" stroke-width="1"/>
+  <text x="459" y="116" text-anchor="middle" fill="#E87722" font-size="10" font-weight="600">90.3% F1</text>
 
-  <rect x="520" y="145" width="90" height="24" rx="12" fill="#0C1A2E" stroke="#7A2182" stroke-width="1"/>
-  <text x="565" y="161" text-anchor="middle" fill="#C87ED2" font-size="10" font-weight="600">No Cloud</text>
+  <rect x="509" y="100" width="80" height="24" rx="12" fill="#F0F4F8" stroke="#7A2182" stroke-width="1"/>
+  <text x="549" y="116" text-anchor="middle" fill="#7A2182" font-size="10" font-weight="600">No Cloud</text>
 
-  <!-- Sensor icon (simplified BME680) -->
-  <rect x="60" y="55" width="40" height="50" rx="4" fill="none" stroke="#0077C8" stroke-width="1.5"/>
-  <circle cx="80" cy="75" r="8" fill="none" stroke="#00B5E2" stroke-width="1"/>
-  <line x1="70" y1="95" x2="70" y2="108" stroke="#0077C8" stroke-width="1"/>
-  <line x1="80" y1="95" x2="80" y2="108" stroke="#0077C8" stroke-width="1"/>
-  <line x1="90" y1="95" x2="90" y2="108" stroke="#0077C8" stroke-width="1"/>
-
-  <!-- MCU icon (simplified chip) -->
-  <rect x="800" y="75" width="50" height="40" rx="3" fill="none" stroke="#0077C8" stroke-width="1.5"/>
-  <line x1="810" y1="75" x2="810" y2="65" stroke="#0077C8" stroke-width="1"/>
-  <line x1="820" y1="75" x2="820" y2="65" stroke="#0077C8" stroke-width="1"/>
-  <line x1="830" y1="75" x2="830" y2="65" stroke="#0077C8" stroke-width="1"/>
-  <line x1="840" y1="75" x2="840" y2="65" stroke="#0077C8" stroke-width="1"/>
-  <line x1="810" y1="115" x2="810" y2="125" stroke="#0077C8" stroke-width="1"/>
-  <line x1="820" y1="115" x2="820" y2="125" stroke="#0077C8" stroke-width="1"/>
-  <line x1="830" y1="115" x2="830" y2="125" stroke="#0077C8" stroke-width="1"/>
-  <line x1="840" y1="115" x2="840" y2="125" stroke="#0077C8" stroke-width="1"/>
-  <text x="825" y="99" text-anchor="middle" fill="#00B5E2" font-size="8" font-weight="600">M4</text>
+  <rect x="599" y="100" width="72" height="24" rx="12" fill="#F0F4F8" stroke="#00B5E2" stroke-width="1"/>
+  <text x="635" y="116" text-anchor="middle" fill="#0077C8" font-size="10" font-weight="600">~10s</text>
 </svg>

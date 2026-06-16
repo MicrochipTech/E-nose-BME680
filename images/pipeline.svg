@@ -5,62 +5,63 @@
       <stop offset="100%" style="stop-color:#78BE20"/>
     </linearGradient>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="120%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.1"/>
     </filter>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#0077C8"/>
+    </marker>
   </defs>
 
-  <!-- Background -->
-  <rect width="900" height="320" rx="12" fill="#0C1A2E"/>
+  <!-- Plain white background -->
+  <rect width="900" height="320" rx="12" fill="#FFFFFF" stroke="#E0E4E8" stroke-width="1"/>
 
   <!-- Title -->
-  <text x="450" y="35" text-anchor="middle" fill="#FFFFFF" font-size="16" font-weight="600">Signal Processing Pipeline</text>
+  <text x="450" y="35" text-anchor="middle" fill="#1B365D" font-size="16" font-weight="600">Signal Processing Pipeline</text>
 
   <!-- Step 1: BME680 Sensor -->
-  <rect x="30" y="60" width="120" height="80" rx="10" fill="#132B4A" stroke="#0077C8" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="90" y="90" text-anchor="middle" fill="#00B5E2" font-size="11" font-weight="600">BME680</text>
-  <text x="90" y="108" text-anchor="middle" fill="#A8C4E0" font-size="9">gas_ohm</text>
-  <text x="90" y="122" text-anchor="middle" fill="#A8C4E0" font-size="9">humidity</text>
-  <text x="90" y="136" text-anchor="middle" fill="#A8C4E0" font-size="9">temp, press</text>
+  <rect x="30" y="60" width="120" height="80" rx="10" fill="#F7FAFC" stroke="#0077C8" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="90" y="90" text-anchor="middle" fill="#0077C8" font-size="11" font-weight="600">BME680</text>
+  <text x="90" y="108" text-anchor="middle" fill="#5A6E80" font-size="9">gas_ohm</text>
+  <text x="90" y="122" text-anchor="middle" fill="#5A6E80" font-size="9">humidity</text>
+  <text x="90" y="136" text-anchor="middle" fill="#5A6E80" font-size="9">temp, press</text>
 
   <!-- Arrow 1 -->
-  <defs><marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-    <polygon points="0 0, 8 3, 0 6" fill="#0077C8"/></marker></defs>
   <path d="M155 100 L185 100" stroke="#0077C8" stroke-width="2" marker-end="url(#arrowhead)"/>
 
   <!-- Step 2: Log Transform -->
-  <rect x="190" y="60" width="120" height="80" rx="10" fill="#132B4A" stroke="#0077C8" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="250" y="90" text-anchor="middle" fill="#00B5E2" font-size="11" font-weight="600">Log Transform</text>
-  <text x="250" y="110" text-anchor="middle" fill="#A8C4E0" font-size="9">log(gas_ohm)</text>
-  <text x="250" y="126" text-anchor="middle" fill="#A8C4E0" font-size="9">slope = d/dt</text>
+  <rect x="190" y="60" width="120" height="80" rx="10" fill="#F7FAFC" stroke="#0077C8" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="250" y="90" text-anchor="middle" fill="#0077C8" font-size="11" font-weight="600">Log Transform</text>
+  <text x="250" y="110" text-anchor="middle" fill="#5A6E80" font-size="9">log(gas_ohm)</text>
+  <text x="250" y="126" text-anchor="middle" fill="#5A6E80" font-size="9">slope = d/dt</text>
 
   <!-- Arrow 2 -->
   <path d="M315 100 L345 100" stroke="#0077C8" stroke-width="2" marker-end="url(#arrowhead)"/>
 
   <!-- Step 3: EMA -->
-  <rect x="350" y="60" width="120" height="80" rx="10" fill="#132B4A" stroke="#E87722" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="350" y="60" width="120" height="80" rx="10" fill="#FFF8F3" stroke="#E87722" stroke-width="1.5" filter="url(#shadow)"/>
   <text x="410" y="85" text-anchor="middle" fill="#E87722" font-size="11" font-weight="600">Dual EMA</text>
-  <text x="410" y="103" text-anchor="middle" fill="#A8C4E0" font-size="9">Fast: alpha=0.10</text>
-  <text x="410" y="119" text-anchor="middle" fill="#A8C4E0" font-size="9">Slow: alpha=0.01</text>
-  <text x="410" y="135" text-anchor="middle" fill="#A8C4E0" font-size="9">(baseline)</text>
+  <text x="410" y="103" text-anchor="middle" fill="#5A6E80" font-size="9">Fast: alpha=0.10</text>
+  <text x="410" y="119" text-anchor="middle" fill="#5A6E80" font-size="9">Slow: alpha=0.01</text>
+  <text x="410" y="135" text-anchor="middle" fill="#5A6E80" font-size="9">(baseline)</text>
 
   <!-- Arrow 3 -->
   <path d="M475 100 L505 100" stroke="#0077C8" stroke-width="2" marker-end="url(#arrowhead)"/>
 
   <!-- Step 4: dropPct -->
-  <rect x="510" y="60" width="120" height="80" rx="10" fill="#132B4A" stroke="#78BE20" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="570" y="90" text-anchor="middle" fill="#78BE20" font-size="11" font-weight="600">Normalize</text>
-  <text x="570" y="110" text-anchor="middle" fill="#A8C4E0" font-size="9">dropPct =</text>
-  <text x="570" y="126" text-anchor="middle" fill="#A8C4E0" font-size="9">(ema-base)/base</text>
+  <rect x="510" y="60" width="120" height="80" rx="10" fill="#F3FBF5" stroke="#00843D" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="570" y="90" text-anchor="middle" fill="#00843D" font-size="11" font-weight="600">Normalize</text>
+  <text x="570" y="110" text-anchor="middle" fill="#5A6E80" font-size="9">dropPct =</text>
+  <text x="570" y="126" text-anchor="middle" fill="#5A6E80" font-size="9">(ema-base)/base</text>
 
   <!-- Arrow 4 -->
   <path d="M635 100 L665 100" stroke="#0077C8" stroke-width="2" marker-end="url(#arrowhead)"/>
 
   <!-- Step 5: Features -->
-  <rect x="670" y="60" width="120" height="80" rx="10" fill="#132B4A" stroke="#7A2182" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="730" y="85" text-anchor="middle" fill="#C87ED2" font-size="11" font-weight="600">20s Window</text>
-  <text x="730" y="103" text-anchor="middle" fill="#A8C4E0" font-size="9">10 features</text>
-  <text x="730" y="119" text-anchor="middle" fill="#A8C4E0" font-size="9">percentiles, std</text>
-  <text x="730" y="135" text-anchor="middle" fill="#A8C4E0" font-size="9">min, slope</text>
+  <rect x="670" y="60" width="120" height="80" rx="10" fill="#F9F3FC" stroke="#7A2182" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="730" y="85" text-anchor="middle" fill="#7A2182" font-size="11" font-weight="600">20s Window</text>
+  <text x="730" y="103" text-anchor="middle" fill="#5A6E80" font-size="9">10 features</text>
+  <text x="730" y="119" text-anchor="middle" fill="#5A6E80" font-size="9">percentiles, std</text>
+  <text x="730" y="135" text-anchor="middle" fill="#5A6E80" font-size="9">min, slope</text>
 
   <!-- Arrow down to classifier -->
   <path d="M730 145 L730 170" stroke="#0077C8" stroke-width="2" marker-end="url(#arrowhead)"/>
@@ -76,31 +77,31 @@
   <path d="M820 235 L900 270" stroke="#0077C8" stroke-width="1.5" marker-end="url(#arrowhead)"/>
 
   <!-- Output classes -->
-  <rect x="440" y="275" width="110" height="35" rx="8" fill="#132B4A" stroke="#E87722" stroke-width="1.5"/>
+  <rect x="440" y="275" width="110" height="35" rx="8" fill="#FFF8F3" stroke="#E87722" stroke-width="1.5"/>
   <text x="495" y="297" text-anchor="middle" fill="#E87722" font-size="12" font-weight="600">Coffee</text>
 
-  <rect x="675" y="275" width="110" height="35" rx="8" fill="#132B4A" stroke="#7A2182" stroke-width="1.5"/>
-  <text x="730" y="297" text-anchor="middle" fill="#C87ED2" font-size="12" font-weight="600">Alcohol</text>
+  <rect x="675" y="275" width="110" height="35" rx="8" fill="#F9F3FC" stroke="#7A2182" stroke-width="1.5"/>
+  <text x="730" y="297" text-anchor="middle" fill="#7A2182" font-size="12" font-weight="600">Alcohol</text>
 
-  <rect x="845" y="275" width="110" height="35" rx="8" fill="#132B4A" stroke="#78BE20" stroke-width="1.5"/>
-  <text x="900" y="297" text-anchor="middle" fill="#78BE20" font-size="12" font-weight="600">Garlic</text>
+  <rect x="845" y="275" width="110" height="35" rx="8" fill="#F3FBF5" stroke="#78BE20" stroke-width="1.5"/>
+  <text x="900" y="297" text-anchor="middle" fill="#00843D" font-size="12" font-weight="600">Garlic</text>
 
   <!-- Metrics at bottom-left -->
-  <text x="90" y="180" text-anchor="middle" fill="#6889A8" font-size="9">INFERENCE</text>
-  <text x="90" y="200" text-anchor="middle" fill="#78BE20" font-size="18" font-weight="700">&lt;1ms</text>
+  <text x="90" y="180" text-anchor="middle" fill="#8899A8" font-size="9">INFERENCE</text>
+  <text x="90" y="200" text-anchor="middle" fill="#00843D" font-size="18" font-weight="700">&lt;1ms</text>
 
-  <text x="250" y="180" text-anchor="middle" fill="#6889A8" font-size="9">FLASH</text>
-  <text x="250" y="200" text-anchor="middle" fill="#78BE20" font-size="18" font-weight="700">&lt;1KB</text>
+  <text x="250" y="180" text-anchor="middle" fill="#8899A8" font-size="9">FLASH</text>
+  <text x="250" y="200" text-anchor="middle" fill="#00843D" font-size="18" font-weight="700">&lt;1KB</text>
 
-  <text x="410" y="180" text-anchor="middle" fill="#6889A8" font-size="9">F1 MACRO</text>
+  <text x="410" y="180" text-anchor="middle" fill="#8899A8" font-size="9">F1 MACRO</text>
   <text x="410" y="200" text-anchor="middle" fill="#E87722" font-size="18" font-weight="700">90.3%</text>
 
-  <text x="250" y="240" text-anchor="middle" fill="#6889A8" font-size="9">RAM</text>
-  <text x="250" y="260" text-anchor="middle" fill="#00B5E2" font-size="14" font-weight="600">1.3 KB</text>
+  <text x="250" y="240" text-anchor="middle" fill="#8899A8" font-size="9">RAM</text>
+  <text x="250" y="260" text-anchor="middle" fill="#0077C8" font-size="14" font-weight="600">1.3 KB</text>
 
-  <text x="90" y="240" text-anchor="middle" fill="#6889A8" font-size="9">WARM-UP</text>
-  <text x="90" y="260" text-anchor="middle" fill="#00B5E2" font-size="14" font-weight="600">~20s</text>
+  <text x="90" y="240" text-anchor="middle" fill="#8899A8" font-size="9">WARM-UP</text>
+  <text x="90" y="260" text-anchor="middle" fill="#0077C8" font-size="14" font-weight="600">~20s</text>
 
-  <text x="410" y="240" text-anchor="middle" fill="#6889A8" font-size="9">DETECTION</text>
-  <text x="410" y="260" text-anchor="middle" fill="#00B5E2" font-size="14" font-weight="600">~10s</text>
+  <text x="410" y="240" text-anchor="middle" fill="#8899A8" font-size="9">DETECTION</text>
+  <text x="410" y="260" text-anchor="middle" fill="#0077C8" font-size="14" font-weight="600">~10s</text>
 </svg>

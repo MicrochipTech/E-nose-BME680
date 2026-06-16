@@ -1,71 +1,71 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="120%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.08"/>
     </filter>
   </defs>
 
-  <!-- Background -->
-  <rect width="480" height="340" rx="12" fill="#0C1A2E"/>
+  <!-- Plain white background -->
+  <rect width="480" height="340" rx="12" fill="#FFFFFF" stroke="#E0E4E8" stroke-width="1"/>
 
   <!-- Title -->
-  <text x="240" y="30" text-anchor="middle" fill="#FFFFFF" font-size="14" font-weight="600">Classification Report (Held-out Test, 107 Windows)</text>
+  <text x="240" y="30" text-anchor="middle" fill="#1B365D" font-size="14" font-weight="600">Classification Report (Held-out Test, 107 Windows)</text>
 
   <!-- Column headers -->
-  <text x="240" y="60" text-anchor="middle" fill="#6889A8" font-size="10" font-weight="500">PREDICTED</text>
+  <text x="240" y="60" text-anchor="middle" fill="#8899A8" font-size="10" font-weight="500">PREDICTED</text>
   <text x="180" y="80" text-anchor="middle" fill="#7A2182" font-size="10" font-weight="600">Alcohol</text>
   <text x="270" y="80" text-anchor="middle" fill="#E87722" font-size="10" font-weight="600">Coffee</text>
-  <text x="360" y="80" text-anchor="middle" fill="#78BE20" font-size="10" font-weight="600">Garlic</text>
+  <text x="360" y="80" text-anchor="middle" fill="#00843D" font-size="10" font-weight="600">Garlic</text>
 
   <!-- Row header -->
-  <text x="30" y="155" text-anchor="middle" fill="#6889A8" font-size="10" font-weight="500" transform="rotate(-90 30 155)">ACTUAL</text>
+  <text x="30" y="155" text-anchor="middle" fill="#8899A8" font-size="10" font-weight="500" transform="rotate(-90 30 155)">ACTUAL</text>
 
   <!-- Row labels -->
   <text x="95" y="125" text-anchor="end" fill="#7A2182" font-size="11" font-weight="600">Alcohol</text>
   <text x="95" y="185" text-anchor="end" fill="#E87722" font-size="11" font-weight="600">Coffee</text>
-  <text x="95" y="245" text-anchor="end" fill="#78BE20" font-size="11" font-weight="600">Garlic</text>
+  <text x="95" y="245" text-anchor="end" fill="#00843D" font-size="11" font-weight="600">Garlic</text>
 
   <!-- Confusion matrix cells -->
   <!-- Row 1: Alcohol (48 correct, 0 coffee, 1 garlic) -->
-  <rect x="135" y="95" width="90" height="50" rx="6" fill="#0D3D1F"/>
-  <text x="180" y="125" text-anchor="middle" fill="#78BE20" font-size="20" font-weight="700">48</text>
+  <rect x="135" y="95" width="90" height="50" rx="6" fill="#E8F8EE" stroke="#78BE20" stroke-width="0.5"/>
+  <text x="180" y="125" text-anchor="middle" fill="#00843D" font-size="20" font-weight="700">48</text>
 
-  <rect x="225" y="95" width="90" height="50" rx="6" fill="#132B4A"/>
-  <text x="270" y="125" text-anchor="middle" fill="#6889A8" font-size="20" font-weight="700">0</text>
+  <rect x="225" y="95" width="90" height="50" rx="6" fill="#F7FAFC" stroke="#E0E4E8" stroke-width="0.5"/>
+  <text x="270" y="125" text-anchor="middle" fill="#B0B8C0" font-size="20" font-weight="700">0</text>
 
-  <rect x="315" y="95" width="90" height="50" rx="6" fill="#3D1510"/>
+  <rect x="315" y="95" width="90" height="50" rx="6" fill="#FFF3EC" stroke="#E87722" stroke-width="0.5"/>
   <text x="360" y="125" text-anchor="middle" fill="#E87722" font-size="20" font-weight="700">1</text>
 
   <!-- Row 2: Coffee (0 alcohol, 13 correct, 0 garlic) -->
-  <rect x="135" y="155" width="90" height="50" rx="6" fill="#132B4A"/>
-  <text x="180" y="185" text-anchor="middle" fill="#6889A8" font-size="20" font-weight="700">0</text>
+  <rect x="135" y="155" width="90" height="50" rx="6" fill="#F7FAFC" stroke="#E0E4E8" stroke-width="0.5"/>
+  <text x="180" y="185" text-anchor="middle" fill="#B0B8C0" font-size="20" font-weight="700">0</text>
 
-  <rect x="225" y="155" width="90" height="50" rx="6" fill="#0D3D1F"/>
-  <text x="270" y="185" text-anchor="middle" fill="#78BE20" font-size="20" font-weight="700">13</text>
+  <rect x="225" y="155" width="90" height="50" rx="6" fill="#E8F8EE" stroke="#78BE20" stroke-width="0.5"/>
+  <text x="270" y="185" text-anchor="middle" fill="#00843D" font-size="20" font-weight="700">13</text>
 
-  <rect x="315" y="155" width="90" height="50" rx="6" fill="#132B4A"/>
-  <text x="360" y="185" text-anchor="middle" fill="#6889A8" font-size="20" font-weight="700">0</text>
+  <rect x="315" y="155" width="90" height="50" rx="6" fill="#F7FAFC" stroke="#E0E4E8" stroke-width="0.5"/>
+  <text x="360" y="185" text-anchor="middle" fill="#B0B8C0" font-size="20" font-weight="700">0</text>
 
   <!-- Row 3: Garlic (9 alcohol, 1 coffee, 35 correct) -->
-  <rect x="135" y="215" width="90" height="50" rx="6" fill="#3D1510"/>
+  <rect x="135" y="215" width="90" height="50" rx="6" fill="#FFF3EC" stroke="#E87722" stroke-width="0.5"/>
   <text x="180" y="245" text-anchor="middle" fill="#E87722" font-size="20" font-weight="700">9</text>
 
-  <rect x="225" y="215" width="90" height="50" rx="6" fill="#3D1510"/>
+  <rect x="225" y="215" width="90" height="50" rx="6" fill="#FFF3EC" stroke="#E87722" stroke-width="0.5"/>
   <text x="270" y="245" text-anchor="middle" fill="#E87722" font-size="20" font-weight="700">1</text>
 
-  <rect x="315" y="215" width="90" height="50" rx="6" fill="#0D3D1F"/>
-  <text x="360" y="245" text-anchor="middle" fill="#78BE20" font-size="20" font-weight="700">35</text>
+  <rect x="315" y="215" width="90" height="50" rx="6" fill="#E8F8EE" stroke="#78BE20" stroke-width="0.5"/>
+  <text x="360" y="245" text-anchor="middle" fill="#00843D" font-size="20" font-weight="700">35</text>
 
   <!-- F1 scores on the right -->
-  <text x="435" y="80" text-anchor="middle" fill="#6889A8" font-size="10">F1</text>
-  <text x="435" y="125" text-anchor="middle" fill="#00B5E2" font-size="13" font-weight="600">0.906</text>
-  <text x="435" y="185" text-anchor="middle" fill="#00B5E2" font-size="13" font-weight="600">0.929</text>
-  <text x="435" y="245" text-anchor="middle" fill="#00B5E2" font-size="13" font-weight="600">0.875</text>
+  <text x="435" y="80" text-anchor="middle" fill="#8899A8" font-size="10">F1</text>
+  <text x="435" y="125" text-anchor="middle" fill="#0077C8" font-size="13" font-weight="600">0.906</text>
+  <text x="435" y="185" text-anchor="middle" fill="#0077C8" font-size="13" font-weight="600">0.929</text>
+  <text x="435" y="245" text-anchor="middle" fill="#0077C8" font-size="13" font-weight="600">0.875</text>
 
   <!-- Bottom summary -->
-  <rect x="135" y="285" width="310" height="40" rx="8" fill="#132B4A" stroke="#0077C8" stroke-width="1"/>
-  <text x="210" y="307" text-anchor="middle" fill="#6889A8" font-size="10">MACRO F1</text>
+  <rect x="135" y="285" width="310" height="40" rx="8" fill="#F7FAFC" stroke="#0077C8" stroke-width="1"/>
+  <text x="210" y="307" text-anchor="middle" fill="#8899A8" font-size="10">MACRO F1</text>
   <text x="210" y="322" text-anchor="middle" fill="#E87722" font-size="14" font-weight="700">0.903</text>
-  <text x="340" y="307" text-anchor="middle" fill="#6889A8" font-size="10">ACCURACY</text>
-  <text x="340" y="322" text-anchor="middle" fill="#78BE20" font-size="14" font-weight="700">89.7%</text>
+  <text x="340" y="307" text-anchor="middle" fill="#8899A8" font-size="10">ACCURACY</text>
+  <text x="340" y="322" text-anchor="middle" fill="#00843D" font-size="14" font-weight="700">89.7%</text>
 </svg>
