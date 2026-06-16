@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/microchiplogo.png" alt="Microchip Technology" width="300">
+  <img src="images/microchiplogo.png" alt="Microchip Technology" width="500">
 </p>
 
 <h1 align="center">BME680 Electronic Nose</h1>
