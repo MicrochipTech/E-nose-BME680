@@ -22,7 +22,8 @@ No cloud. No ML library. The entire model runs as hardcoded C `if/else` on the m
 
 <p align="center">
   <img src="images/hardware-setup.jpg" alt="Demo setup: BME680 sensor with three scent jars (alcohol, garlic, coffee) on Feather M4" width="500">
-  &nbsp;&nbsp;&nbsp;
+</p>
+<p align="center">
   <img src="images/featherm4.png" alt="Adafruit Feather M4 Express" width="220">
 </p>
 
