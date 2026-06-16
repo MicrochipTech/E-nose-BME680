@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Nose Comparison: MQ Array vs BME680</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f1419;
+            color: #e7e9ea;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            text-align: center;
+            color: #71767b;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        @media (max-width: 768px) { .cards { grid-template-columns: 1fr; } }
+        .card {
+            background: #1a1f26;
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid #2f3336;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .card:hover { transform: translateY(-2px); border-color: #667eea; }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        .card-original .card-icon { background: #2d4a3e; }
+        .card-improved .card-icon { background: #3d2d5c; }
+        .card h2 { font-size: 1.3rem; }
+        .card .tag {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+        .card-original .tag { background: #2d4a3e; color: #4ade80; }
+        .card-improved .tag { background: #3d2d5c; color: #a78bfa; }
+        .specs { list-style: none; margin-top: 1rem; }
+        .specs li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #2f3336;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .specs li:last-child { border-bottom: none; }
+        .spec-label { color: #71767b; font-size: 0.9rem; }
+        .spec-value { font-weight: 600; text-align: right; }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: #1a1f26;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 1rem 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid #2f3336;
+        }
+        .comparison-table th {
+            background: #252a31;
+            color: #71767b;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table td:first-child { color: #71767b; }
+        .winner { color: #4ade80; }
+        .section-title {
+            font-size: 1.5rem;
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #2f3336;
+        }
+        .arch-diagram {
+            background: #1a1f26;
+            border: 1px solid #2f3336;
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            white-space: pre;
+            overflow-x: auto;
+            line-height: 1.8;
+            margin: 1rem 0;
+        }
+        .highlight-green { color: #4ade80; }
+        .highlight-purple { color: #a78bfa; }
+        .insight-box {
+            background: linear-gradient(135deg, #1a2a1f, #1a1f2a);
+            border: 1px solid #2d4a3e;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .insight-box h3 { color: #4ade80; margin-bottom: 0.5rem; }
+        .footer {
+            text-align: center;
+            color: #71767b;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #2f3336;
+            font-size: 0.9rem;
+        }
+        .footer a { color: #667eea; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Electronic Nose: MQ Array vs BME680</h1>
+        <p class="subtitle">Two approaches to on-device odor classification on Adafruit Feather M4</p>
+
+        <div class="cards">
+            <div class="card card-original">
+                <div class="card-header">
+                    <div class="card-icon">&#x1F9EA;</div>
+                    <div>
+                        <h2>Original: MQ Sensor Array</h2>
+                        <span class="tag">6 sensors + Edge Impulse</span>
+                    </div>
+                </div>
+                <ul class="specs">
+                    <li><span class="spec-label">Sensors</span><span class="spec-value">6x MQ-series</span></li>
+                    <li><span class="spec-label">Scents</span><span class="spec-value">Coffee, Perfume, Air</span></li>
+                    <li><span class="spec-label">Accuracy</span><span class="spec-value highlight-green">~98%</span></li>
+                    <li><span class="spec-label">ML Platform</span><span class="spec-value">Edge Impulse (cloud)</span></li>
+                    <li><span class="spec-label">Model</span><span class="spec-value">TFLite Micro NN</span></li>
+                    <li><span class="spec-label">Flash Usage</span><span class="spec-value">~50-100 KB</span></li>
+                    <li><span class="spec-label">Warm-up</span><span class="spec-value">24-48 hours</span></li>
+                    <li><span class="spec-label">Wiring</span><span class="spec-value">12+ wires</span></li>
+                    <li><span class="spec-label">Cost</span><span class="spec-value">~$30-40</span></li>
+                </ul>
+            </div>
+
+            <div class="card card-improved">
+                <div class="card-header">
+                    <div class="card-icon">&#x1F52C;</div>
+                    <div>
+                        <h2>Improved: BME680</h2>
+                        <span class="tag">1 sensor + Decision Tree</span>
+                    </div>
+                </div>
+                <ul class="specs">
+                    <li><span class="spec-label">Sensors</span><span class="spec-value">1x Bosch BME680</span></li>
+                    <li><span class="spec-label">Scents</span><span class="spec-value">Coffee, Alcohol, Garlic</span></li>
+                    <li><span class="spec-label">Accuracy</span><span class="spec-value">90.3% F1</span></li>
+                    <li><span class="spec-label">ML Platform</span><span class="spec-value">scikit-learn (local)</span></li>
+                    <li><span class="spec-label">Model</span><span class="spec-value highlight-purple">C if/else (no runtime)</span></li>
+                    <li><span class="spec-label">Flash Usage</span><span class="spec-value highlight-purple">&lt; 1 KB</span></li>
+                    <li><span class="spec-label">Warm-up</span><span class="spec-value highlight-purple">~20 seconds</span></li>
+                    <li><span class="spec-label">Wiring</span><span class="spec-value highlight-purple">4 wires (I2C)</span></li>
+                    <li><span class="spec-label">Cost</span><span class="spec-value highlight-purple">~$10</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="insight-box">
+            <h3>Key Innovation: Turbulence Relabeling</h3>
+            <p>The BME680 approach eliminates the "turbulence" class entirely. Transition periods between scent jars are split at the slope reversal point &mdash; the first half keeps the fading scent's label, the second half gets the arriving scent's label. This means the model classifies correctly <em>during</em> transitions, not just after settling. Detection within ~10 seconds of a scent change.</p>
+        </div>
+
+        <h2 class="section-title">Detailed Comparison</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Aspect</th>
+                    <th>MQ Array</th>
+                    <th>BME680</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Inference time</td>
+                    <td>10-50 ms</td>
+                    <td class="winner">&lt; 1 ms</td>
+                </tr>
+                <tr>
+                    <td>RAM usage</td>
+                    <td>10-20 KB</td>
+                    <td class="winner">1.3 KB</td>
+                </tr>
+                <tr>
+                    <td>External dependencies</td>
+                    <td>Edge Impulse Arduino library</td>
+                    <td class="winner">None (pure C)</td>
+                </tr>
+                <tr>
+                    <td>Baseline drift handling</td>
+                    <td>Not addressed</td>
+                    <td class="winner">dropPct normalization</td>
+                </tr>
+                <tr>
+                    <td>Transition detection</td>
+                    <td>Not addressed</td>
+                    <td class="winner">Turbulence relabeling</td>
+                </tr>
+                <tr>
+                    <td>Training workflow</td>
+                    <td>Upload to cloud, click buttons</td>
+                    <td class="winner">Local Python script</td>
+                </tr>
+                <tr>
+                    <td>Power consumption</td>
+                    <td>High (6 MQ heaters)</td>
+                    <td class="winner">Low (~12 mA)</td>
+                </tr>
+                <tr>
+                    <td>Raw accuracy</td>
+                    <td class="winner">~98%</td>
+                    <td>90.3% F1</td>
+                </tr>
+                <tr>
+                    <td>Chemical diversity</td>
+                    <td class="winner">6 different sensor types</td>
+                    <td>1 MOX element</td>
+                </tr>
+                <tr>
+                    <td>Scalability (5+ scents)</td>
+                    <td class="winner">Better with more channels</td>
+                    <td>Limited by single sensor</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="section-title">Architecture</h2>
+        <div class="cards">
+            <div class="card card-original">
+                <h3 style="margin-bottom:1rem; color:#4ade80;">MQ Array Pipeline</h3>
+                <div class="arch-diagram">[MQ-2][MQ-3][MQ-4][MQ-5][MQ-6][MQ-135]
+   |     |     |     |     |     |
+   +-----+-----+-----+-----+-----+
+                 |
+         [Feather M4 ADC]
+                 |
+      [Edge Impulse TFLite Model]
+                 |
+           Classification</div>
+            </div>
+            <div class="card card-improved">
+                <h3 style="margin-bottom:1rem; color:#a78bfa;">BME680 Pipeline</h3>
+                <div class="arch-diagram">        [BME680 - I2C]
+              |
+        [Feather M4]
+              |
+  [log -> EMA -> dropPct -> features]
+              |
+    [Decision Tree (C if/else)]
+              |
+        Classification</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">When to Use Which</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Scenario</th>
+                    <th>Recommendation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Maximum classification accuracy</td><td>MQ Array</td></tr>
+                <tr><td>Quick demo or proof of concept</td><td class="winner">BME680</td></tr>
+                <tr><td>Battery-powered / low-power</td><td class="winner">BME680</td></tr>
+                <tr><td>Many chemically similar scents (5+)</td><td>MQ Array</td></tr>
+                <tr><td>Resource-constrained MCU</td><td class="winner">BME680</td></tr>
+                <tr><td>No internet access for training</td><td class="winner">BME680</td></tr>
+                <tr><td>Variable environment (humidity shifts)</td><td class="winner">BME680</td></tr>
+                <tr><td>Production with stable environment</td><td>MQ Array</td></tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <p>Microchip Technology Inc. &mdash; 2026</p>
+            <p>
+                <a href="https://github.com/MicrochipTech/E-nose">Original Repo</a> &nbsp;|&nbsp;
+                <a href="https://github.com/MicrochipTech/E-nose-BME680">Improved Repo</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
