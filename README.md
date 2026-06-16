@@ -1,5 +1,11 @@
 <p align="center">
-  <img src="images/banner.svg" alt="BME680 Electronic Nose" width="100%">
+  <img src="images/microchiplogo.png" alt="Microchip Technology" width="300">
+</p>
+
+<h1 align="center">BME680 Electronic Nose</h1>
+
+<p align="center">
+  <img src="images/banner.svg" alt="BME680 Electronic Nose — Key Metrics" width="100%">
 </p>
 
 On-device odor classifier distinguishing **coffee, alcohol, and garlic** using a single Bosch BME680 gas sensor and a scikit-learn decision tree deployed on an Adafruit Feather M4 Express (SAMD51).
@@ -15,7 +21,9 @@ No cloud. No ML library. The entire model runs as hardcoded C `if/else` on the m
 ## Hardware
 
 <p align="center">
-  <img src="images/hardware-setup.jpg" alt="Demo setup: BME680 sensor with three scent jars (alcohol, garlic, coffee) on Feather M4" width="600">
+  <img src="images/hardware-setup.jpg" alt="Demo setup: BME680 sensor with three scent jars (alcohol, garlic, coffee) on Feather M4" width="500">
+  &nbsp;&nbsp;&nbsp;
+  <img src="images/featherm4.png" alt="Adafruit Feather M4 Express" width="220">
 </p>
 
 | Part | Details |

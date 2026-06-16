@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="images/microchiplogo.png" alt="Microchip Technology" width="250">
+</p>
+
 # E-Nose Comparison: MQ Sensor Array vs BME680
 
 A side-by-side comparison of the two electronic nose implementations.
@@ -96,30 +100,28 @@ A side-by-side comparison of the two electronic nose implementations.
 ## Architecture Diagram
 
 ### Original (MQ Array)
-```
-[MQ-2] [MQ-3] [MQ-4] [MQ-5] [MQ-6] [MQ-135]
-  |      |      |      |      |      |
-  +------+------+------+------+------+
-                    |
-            [Feather M4 ADC]
-                    |
-         [Edge Impulse TFLite Model]
-                    |
-              Classification
-```
+
+<p align="center">
+  <img src="images/original-design.png" alt="Original MQ sensor array wiring diagram" width="700">
+</p>
+
+### Original Results (Edge Impulse)
+
+<p align="center">
+  <img src="images/original-results.png" alt="Original Edge Impulse results: 99% accuracy on GPU, 97% on M4" width="700">
+</p>
 
 ### Improved (BME680)
-```
-         [BME680 - I2C]
-              |
-        [Feather M4]
-              |
-   [log → EMA → dropPct → features]
-              |
-     [Decision Tree (C if/else)]
-              |
-        Classification
-```
+
+<p align="center">
+  <img src="images/pipeline.svg" alt="BME680 signal processing pipeline" width="700">
+</p>
+
+### Improved Results
+
+<p align="center">
+  <img src="images/confusion-matrix.svg" alt="BME680 decision tree results: 90.3% F1" width="450">
+</p>
 
 ---
 
